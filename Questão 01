@@ -8,23 +8,23 @@ void main() {
     q = &j;
 
     if(p == &i) {
-        printf("O resultado da primeira expressao eh verdadeiro\n");
+        printf("Resultado da primeira expressao: Verdadeiro\n");
     }
     else {
-        printf("O resultado da primeira expressao eh falso\n");
+        printf("Resultado da primeira expressao: Falso\n");
     }
 
-    printf("O resultado da segunda expressao eh: %d\n", *p - *q);
+    printf("Resultado da segunda expressao: %d\n", *p - *q);
 
-    printf("O resultado da terceira expressao eh: %d\n", **&p);
+    printf("Resultado da terceira expressao: %d\n", **&p);
 
-    printf("O resultado da quarta expressao eh: %d\n", 3 - p/(q) + 7);
+    printf("Resultado da quarta expressao: %d\n", 3 - *p/(*q) + 7);
 
     /*
         Respostas:
-        O resultado da primeira expressao eh verdadeiro
-        O resultado da segunda expressao eh: -2
-        O resultado da terceira expressao eh: 3
-        O resultado da quarta expressao eh: 10
+        O resultado da primeira expressao é verdadeiro
+        O resultado da segunda expressao é: -2
+        O resultado da terceira expressao é: 3
+        O resultado da quarta expressao é: 10
     */
 }
