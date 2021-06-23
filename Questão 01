@@ -1,30 +1,4 @@
-#include <stdio.h>
-
-void main() {
-    int i = 3, j = 5;
-    int *p, *q;
-
-    p = &i;
-    q = &j;
-
-    if(p == &i) {
-        printf("Resultado da primeira expressao: Verdadeiro\n");
-    }
-    else {
-        printf("Resultado da primeira expressao: Falso\n");
-    }
-
-    printf("Resultado da segunda expressao: %d\n", *p - *q);
-
-    printf("Resultado da terceira expressao: %d\n", **&p);
-
-    printf("Resultado da quarta expressao: %d\n", 3 - *p/(*q) + 7);
-
-    /*
-        Respostas:
-        O resultado da primeira expressao é verdadeiro
-        O resultado da segunda expressao é: -2
-        O resultado da terceira expressao é: 3
-        O resultado da quarta expressao é: 10
-    */
-}
+p == &i; // O valor retornado é verdadeiro, visto que o ponteiro p armazena o endereço da variável i.
+*p - *q; // O valor retornado é -2, pois *p e *q acessam os conteúdos de i e j (3 e 5), logo, 3-5 = -2.
+**&p; // O valor retornado é 3, visto que o ponteiro p está acessando o valor contido na variável i.
+3 - *p/(*q) + 7; // O valor retornado é 10. Resolvendo a expressão, temos que *p e *q representam os valores 3 e 5, respectivamente; assim, 3 - (3/5) + 7 = 10.6 = 10 (valor inteiro).
