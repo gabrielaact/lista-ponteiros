@@ -13,8 +13,5 @@ void main(){
     printf(" *(f + %d) = %.1f ", i, *(f+i)); // Também percorre os valores do array, porém agora utilizando o ponteiro;
     printf(" &vet[%d] = %X ", i, &vet[i]); // Exibe o endereço de memória no qual o conteúdo do array está armazenado;
     printf(" (f + %d) = %X ", i, f+i); // Também exibe o endereço de memória no qual o conteúdo do array está armazenado, obtido percorrendo o array usando-se o i.
-  }
-
-  return 0;
-  
+  }  
 }
