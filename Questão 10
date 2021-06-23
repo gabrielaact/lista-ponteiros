@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+/*   TIPO CHAR
+void main() {
+  char vet[4] = {'a', 'b', 'c', 'd'};
+  int i;
+
+  for(i = 0; i < 4; i++){
+    printf("%d ", &vet+i);
+  }
+} 
+
+Resposta: 6422296 6422300 6422304 6422308 
+O resultado impresso condiz com o valor idealizado. */
+
+/*  TIPO INT
+void main() {
+  float vet[4] = {11.1, 11.2, 11.3, 11.4};
+  int i;
+
+  for(i = 0; i < 4; i++){
+    printf("%d ", &vet+i);
+  }
+} 
+
+Resposta: 6422284 6422300 6422316 6422332 
+O resultado impresso não condiz com o valor idealizado. */
+
+
+/*  TIPO FLOAT
+void main() {
+  float vet[4] = {11.1, 11.2, 11.3, 11.4};
+  int i;
+
+  for(i = 0; i < 4; i++){
+    printf("%d ", &vet+i);
+  }
+} 
+
+Resposta: 6422284 6422300 6422316 6422332 
+O resultado impresso condiz com o valor idealizado. */
+
+/*  TIPO DOUBLE
+void main() {
+  double vet[4] = {11.1, 11.2, 11.3, 11.4};
+  int i;
+
+  for(i = 0; i < 4; i++){
+    printf("%d ", &vet+i);
+  }
+} 
+
+Resposta: 6422284 6422300 6422316 6422332 
+O resultado impresso não condiz com o valor idealizado. */
