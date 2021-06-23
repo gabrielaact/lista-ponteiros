@@ -1,0 +1,21 @@
+Temos que uma variável do tipo char ocupa 1 byte, do tipo int ocupa 2 bytes, do tipo float ocupa 4 bytes e do tipo double ocupa 8 bytes. Além disso, x está armazenada no endereço de memória 4092. Portanto:
+
+◦ se x for declarado como char: 
+    x+1 = 4093;
+    x+2 = 4094;
+    x+3 = 4095.
+
+◦ se x for declarado como int: 
+    x+1 = 4094;
+    x+2 = 4096;
+    x+3 = 4098;
+
+◦ se x for declarado como float: 
+    x+1 = 4096;
+    x+2 = 4100;
+    x+3 = 4104.
+
+◦ se x for declarado como double: 
+    x+1 = 4100;
+    x+2 = 4108;
+    x+3 = 4116.
