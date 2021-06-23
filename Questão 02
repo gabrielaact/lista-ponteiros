@@ -7,7 +7,7 @@ void main(){
 
     /* 
         Resposta:
-        o valor do printf anterior foi: 61fe1c 7 5 15 9
+        Os valor impresso foram: 61fe1c 7 5 15 9
     */
 
 }
