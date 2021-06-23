@@ -11,7 +11,7 @@ void main() {
 } 
 
 Resposta: 6422296 6422300 6422304 6422308 
-O resultado impresso não condiz com o valor idealizado. */
+O resultado impresso condiz com o valor idealizado. */
 
 /*  TIPO INT
 void main() {
