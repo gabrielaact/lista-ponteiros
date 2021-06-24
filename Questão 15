@@ -1,29 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int compare (const void * a, const void * b) //Função usada para comparar os valores
-{
-  return ( *(int*)a - *(int*)b );
+int comparador(float x, float y){
+    if( x > y ){
+        return 1;
+    } else{
+        return 0;
+    }
 }
 
-void main() {
-    int n; //tamanho do array
-    int i = 0; //contador
-    int (*comp) (int) = &compare;
+void myqsort(float *vetor, int n, int (*c) (float,float)){
+    int i,j;
+    float aux;
 
-    printf("insira o numero de elementos do array: ");
+    //Ordenação
+    for(i=0;i<n;i++){
+        for(j=i+1;j<n;j++){
+            if((c(vetor[i],vetor[j])) == 1){
+                aux = vetor[i];
+                vetor[i] = vetor[j];
+                vetor[j] = aux;
+            }
+        }
+    }
+}
+
+int main(){
+    int n,i;
+    float *vetor;
+    printf("Informe a quantidade de elementos \n");
     scanf("%d", &n);
+    vetor = (float*) malloc(n*sizeof(float));
+    printf("Informe os elementos \n");
+    for(i=0;i<n;i++){
+        scanf("%f", &vetor[i]);
+    }
+    printf("\n");
 
-    int *v = malloc(n * sizeof(int)); //aloca a memória de acordo com o tamanho informado pelo usuário
+    myqsort(vetor,n,comparador);
 
-    for (i = 0; i < n; i++) {
-        scanf("%d", &v[i]); // preenche o array
+    //Mostra o vetor ordenado
+    for(i=0;i<n;i++){
+        printf("%f \n", vetor[i]);
     }
 
-    qsort (v, n, sizeof(int), comp); //ordena o array
+    free(vetor);
 
-    for (i = 0; i < n; i++) {
-        printf("O %d elemento eh: %d\n", i+1, v[i]);
-    }
-
+    return 0;
 }
