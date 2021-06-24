@@ -1,16 +1,18 @@
-/* Um ponteiro para uma função é uma variável capaz 
-de armazenar o endereço de uma função na memória virtual*/
+/* O uso de ponteiros para funções em C serve para armazenar o endereço de uma função na memória virtual.
+Assim, é possível definir, em tempo de execução, qual função será executada, sem a necessidade de escrever o nome da função, de forma explícita naquele ponto do código. */
 
+//Calculadora de IMC
 #include <stdio.h>
 
-int incremento(int a) {
-    if (a == 0) {
-        return 1;
-    }
-    a *= incremento(a-1);
+float imc(float peso, float altura) {
+    return peso/(altura*altura);
 }
 
 void main() {
-    int (*pf) (int) = &incremento;
-    printf("O resultado de 5! eh: %d\n", pf(5));
-}
+    float peso = 52, altura = 1.71, calcIMC;
+    float (*p)(float, float);
+
+    p = imc;
+    calcIMC = p(peso, altura); 
+    printf("\n O IMC é: %f ", calcIMC);
+} 
