@@ -1,95 +1,87 @@
 #include <stdio.h>
 #include <stdlib.h>
-void multiplicarMatriz(int **matriz1, int **matriz2, int **matrizFinal, int nlinhasm1, int ncol1row2, int ncolunas2){
-    int i, j, k;
 
-    for (i = 0; i < nlinhasm1; i++){
-        for (j = 0; j < ncolunas2; j++){
-            for (k = 0; k < ncol1row2; k++){
-                matrizFinal[i][j] += matriz1[i][k]*matriz2[k][j];
-            }
-        }
-    }
-}
-void lerMatriz(int **matriz, int nlinhas, int ncolunas){
+void imprimeM(int **matriz, int linhas, int colunas){
     int i, j;
 
-    for (i = 0; i < nlinhas; i++){
-        for(j = 0; j < ncolunas; j++){
-            scanf("%d", &matriz[i][j]);
-        }
-    }
-}
-void alocarMatriz(int **matriz, int nlinhas, int ncolunas){
-    int i, j;
-
-    matriz = malloc(nlinhas * sizeof(int*));
-    matriz[0] = malloc(nlinhas * ncolunas * sizeof(int));
-    for(i = 0; i < nlinhas-1; i++){
-        matriz[i] = matriz[i-1]+ncolunas;
-    }
-    printf("matriz alocada com sucesso\n");
-}
-void imprimirMatriz(int **matriz, int nlinhas, int ncolunas){
-    int i, j;
-
-    for(i = 0; i < nlinhas; i++){
-        for(j = 0; j < ncolunas; j++){
+    for(i = 0; i < linhas; i++){
+        for(j = 0; j < colunas; j++){
             printf("%d ", matriz[i][j]);
         }
         printf("\n");
     }
 }
 
+void multiplicaM(int **m1, int **m2, int **mSoma,int linhas, int coluna1, int coluna2){
+    int i, j, k;
+
+    for (i = 0; i < linhas; i++){
+        for (j = 0; j < coluna2; j++){
+            for (k = 0; k < coluna1; k++){
+                mSoma[i][j] += m1[i][k]*m2[k][j];
+            }
+        }
+    }
+}
+
+void recebeM(int **matriz, int linhas, int colunas){
+    int i, j;
+
+    for (i = 0; i < linhas; i++){
+        for(j = 0; j < colunas; j++){
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+int **alocaM(int linhas, int colunas){
+    int **matriz, i, j;
+
+    matriz = malloc(linhas * sizeof(int*));
+    matriz[0] = malloc(linhas * colunas * sizeof(int));
+    for(i = 0; i < linhas-1; i++){
+        matriz[i] = matriz[i-1] + colunas;
+    }
+
+    return matriz;
+}
 
 void main()
 {
-    int nlinhasm1, nlincol, ncolunasm2;
+    int linhas, coluna1, coluna2;
     int i, j;
-    int **matriz1, **matriz2, **soma;
+    int **m1, **m2, **mSoma;
 
-    printf("informe a quantidade de linhas da matriz1\n");
-    scanf("%d", &nlinhasm1);
+    printf("Quantidade de linhas da matriz 1: \n");
+    scanf("%d", &linhas);
 
-    printf("informe a quantidade de colunas da matriz 1 e linhas da matriz 2\n");
-    scanf("%d", &nlincol);
+    printf("Quantidade de colunas da matriz 1: \n");
+    scanf("%d", &coluna1);
 
-    printf("informe a quantidade de colunas da matriz2\n");
-    scanf("%d", &ncolunasm2);
+    printf("Quantidade de colunas da matriz 2: \n");
+    scanf("%d", &coluna2);
 
-    matriz1 = malloc(nlinhasm1 * sizeof(int*));
-    matriz1[0] = malloc(nlinhasm1 * nlincol * sizeof(int));
-    for (i = 1; i < nlinhasm1; i++){
-        matriz1[i] = matriz1[i-1]+nlincol;
-    }
+    m1 = alocaM(linhas, coluna1);
+    m2 = alocaM(coluna1, coluna2);
+    mSoma = alocaM(linhas, coluna2);
 
-    matriz2 = malloc(nlincol * sizeof(int*));
-    matriz2[0] = malloc(nlincol * ncolunasm2 * sizeof(int));
-    for(i = 1; i < nlincol; i++){
-        matriz2[i] = matriz2[i-1] + ncolunasm2;
-    }
 
-    soma = malloc(nlinhasm1 * sizeof(int*));
-    soma[0] = malloc(nlinhasm1 * ncolunasm2 * sizeof(int));
-    for(i = 1; i < nlinhasm1; i++){
-        soma[i] = soma[i-1] + ncolunasm2;
-    }
+    printf("Informe os valores da matriz 1: \n");
+    recebeM(m1, linhas, coluna1);
 
-    printf("leia a matriz 1 %d x %d\n", nlinhasm1, nlincol);
-    lerMatriz(matriz1, nlinhasm1, nlincol);
-    printf("leia a matriz 2 %d x %d\n", nlincol, ncolunasm2);
-    lerMatriz(matriz2, nlincol, ncolunasm2);
+    printf("Informe os valores da matriz 2: \n");
+    recebeM(m2, coluna1, coluna2);
 
-    for(i = 0; i < nlinhasm1; i++){
-        for(j = 0; j < ncolunasm2; j++){
-            soma[i][j] = 0;
-        }
-    }
-    multiplicarMatriz(matriz1, matriz2, soma, nlinhasm1, nlincol, ncolunasm2);
-    printf("A primeira matriz informada foi: \n");
-    imprimirMatriz(matriz1, nlinhasm1, nlincol);
-    printf("A segunda matriz informada foi: \n");
-    imprimirMatriz(matriz2, nlincol, ncolunasm2);
-    printf("O resultado da multiplicacao foi: \n");
-    imprimirMatriz(soma, nlinhasm1, ncolunasm2);
+
+    multiplicaM(m1, m2, mSoma, linhas, coluna1, coluna2);
+
+    printf("Matriz 1: \n");
+    imprimeM(m1, linhas, coluna1);
+
+    printf("Matriz 2: \n");
+    imprimeM(m2, coluna1, coluna2);
+
+    printf("Soma: \n");
+    imprimeM(mSoma, linhas, coluna2);
+
 }
