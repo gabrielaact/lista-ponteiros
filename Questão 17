@@ -1,26 +1,46 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void sum (int v1[], int v2[], int v3[], int n) {
-    int i = 0;
-    for (i = 0; i < n; i++) {
-        v3[i] = v1[i] + v2[i];
+void soma(int *vetor1, int *vetor2, int *vetorFinal, int n){
+    for(int i = 0; i < n; i++){
+        vetorFinal[i] = vetor1[i] + vetor2[i];
     }
 }
 
-void main() {
-    int i;
-    int n = 4;
-    int v1[] = {1, 3, 0, -2};
-    int v2[] = {3, 5, -3, 1};
+int main(){
+    int i, n, *vetor1, *vetor2, *vetorFinal;
 
-    int *pv1 = v1;
-    int *pv2 = v2;
-    int *v3 = malloc(n*sizeof(int));
+    printf("Digite a quantidade de elementos no vetor: ");
+    scanf("%d", &n);
 
-    sum(pv1, pv2, v3, n);
+    vetor1 = malloc(n*sizeof(float));
+    vetor2 = malloc(n*sizeof(float));
+    vetorFinal = malloc(n*sizeof(float));
 
+    printf("Preencha o primeiro vetor: ");
     for (i = 0; i < n; i++) {
-        printf("O %d iesimo elemento eh %d\n", i, v3[i]);
+        scanf("%d", &vetor1[i]);
     }
+
+    printf("\n");
+
+    printf("Preencha o segundo vetor: ");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &vetor2[i]);
+    }
+
+    printf("\n");
+
+    soma(vetor1, vetor2, vetorFinal, n);
+
+    printf("Soma dos vetores: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", vetorFinal[i]);
+    }
+
+    free(vetor1);
+    free(vetor2);
+    free(vetorFinal);
+
+    return 0;
+}
 }
