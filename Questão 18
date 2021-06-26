@@ -12,13 +12,14 @@ void imprimeM(int **matriz, int linhas, int colunas){
     }
 }
 
-void multiplicaM(int **m1, int **m2, int **mSoma,int linhas, int coluna1, int coluna2){
+void multiplicaM(int **m1, int **m2, int **mMult,int linhas, int coluna1, int coluna2){
     int i, j, k;
 
     for (i = 0; i < linhas; i++){
         for (j = 0; j < coluna2; j++){
             for (k = 0; k < coluna1; k++){
-                mSoma[i][j] += m1[i][k]*m2[k][j];
+                mMult[i][j] = 0;
+                mMult[i][j] += m1[i][k]*m2[k][j];
             }
         }
     }
@@ -39,7 +40,7 @@ int **alocaM(int linhas, int colunas){
 
     matriz = malloc(linhas * sizeof(int*));
     matriz[0] = malloc(linhas * colunas * sizeof(int));
-    for(i = 0; i < linhas-1; i++){
+    for(i = 1; i < linhas; i++){
         matriz[i] = matriz[i-1] + colunas;
     }
 
@@ -50,7 +51,7 @@ void main()
 {
     int linhas, coluna1, coluna2;
     int i, j;
-    int **m1, **m2, **mSoma;
+    int **m1, **m2, **mMult;
 
     printf("Quantidade de linhas da matriz 1: \n");
     scanf("%d", &linhas);
@@ -63,8 +64,7 @@ void main()
 
     m1 = alocaM(linhas, coluna1);
     m2 = alocaM(coluna1, coluna2);
-    mSoma = alocaM(linhas, coluna2);
-
+    mMult = alocaM(linhas, coluna2);
 
     printf("Informe os valores da matriz 1: \n");
     recebeM(m1, linhas, coluna1);
@@ -73,7 +73,7 @@ void main()
     recebeM(m2, coluna1, coluna2);
 
 
-    multiplicaM(m1, m2, mSoma, linhas, coluna1, coluna2);
+    multiplicaM(m1, m2, mMult, linhas, coluna1, coluna2);
 
     printf("Matriz 1: \n");
     imprimeM(m1, linhas, coluna1);
@@ -81,7 +81,8 @@ void main()
     printf("Matriz 2: \n");
     imprimeM(m2, coluna1, coluna2);
 
-    printf("Soma: \n");
-    imprimeM(mSoma, linhas, coluna2);
+    printf("Multiplicação: \n");
+    imprimeM(mMult, linhas, coluna2);
 
 }
+
