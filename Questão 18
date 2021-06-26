@@ -17,8 +17,8 @@ void multiplicaM(int **m1, int **m2, int **mMult,int linhas, int coluna1, int co
 
     for (i = 0; i < linhas; i++){
         for (j = 0; j < coluna2; j++){
+            mMult[i][j] = 0;
             for (k = 0; k < coluna1; k++){
-                mMult[i][j] = 0;
                 mMult[i][j] += m1[i][k]*m2[k][j];
             }
         }
@@ -83,6 +83,13 @@ void main()
 
     printf("Multiplicação: \n");
     imprimeM(mMult, linhas, coluna2);
-
+    
+    free(m1[0]);
+    free(m1);
+    free(m2[0]);
+    free(m2);
+    free(mMult[0]);
+    free(mMult);
+    
+    return 0;
 }
-
