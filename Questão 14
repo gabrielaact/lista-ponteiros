@@ -1,49 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Declara uma função do tipo interiro que está pronta para receber dois ponteiros genéricos, cujos valores para onde
-eles apontam não podem ser alterados*/
-int comparador(const void *x, const void *y){
-    
-    /*Os pnteiros passados como parâmetros da função são convertidos para ponteiros para inteiros e têm seu valor resgastado.
-    Dessa forma, é feita uma subtração entre os valores e a função comparador pode retornar um número igual, maior ou menor
-    que zero*/
-    return (*(int*)x - *(int*)y);
+
+//Função que recebe dois ponteiros como parâmetros e retorna a diferença entre os valores armazenados nos ponteiros.
+int comp (const void * n1, const void * n2) 
+{
+  return (*(int*)n1 - *(int*)n2);
 }
 
-int main(){
+void main() {
+    //A variável n representa a quantidade de elementos no array, enquanto cont representa o contador a ser utilizado posteriormente.
+    int n, cont = 0; 
+    int *array; // Ponteiro para armazenar os valores.
 
-    // A variável n guarada a quantidade de elementos que serão comparados, enquanto o i servirá como contador para o for.
-    int n,i;
-    // Ponteiro para ponto flutuante, que irá apontar para o endenreço do vetor de elementos a serem comparados.
-    float *vetor;
-    // Solicita ao usuário a quantidades de elementos que serão comparados.
-    printf("Digite a quant de elementos \n");
-    // Permite ao usuário escrever a quantidade de elementos.
-    scanf("%i", &n);
-    /* Aloca na memória um bloco de n números em ponto flutuante e guarda o endereço do primeiro byte alocado
-    dentro da variável vetor.*/
-    vetor = (float*) malloc(n*sizeof(float));
-    // Solicita ao usuário os elementos que serão comparados.
-    printf("Digite os elementos \n");
-    // Estrutura de repetição que, a paritr de incrementos na vairável i, percorre todo vetor "vetor".
-    for(i=0;i<n;i++){
-        // Função que permite ao usuário escrever o elemento.
-        scanf("%f", &vetor[i]);
+
+    printf("Digite a quantidade de valores: ");
+    scanf("%d", &n);
+    //Aloca na memória uma quantidade n de valores.
+    array = malloc(n * sizeof(int)); 
+
+    //Preenche o array.
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+
     }
 
-    /* Função que ordena de forma crescente os elementos fornecidos. Para realizar tal procedimento ela recebe como parâmentros:
-    o vetor a ser ordenado, o número e o tamanho dos elementos que este contém e a função comparador.*/
-    qsort(vetor,n,sizeof(float),comparador);
+    //Função para ordenar o array.
+    qsort (array, n, sizeof(int), comp); 
 
-    //Indicação de que o vetor ordenado será posteriormente mostrado na tela.
-    printf("Vetor ordenado de forma crescente: \n");
-    // Estrutura de repetição que, a paritr de incrementos na vairável i, percorre todo vetor "vetor".
-    for(i=0;i<n;i++){
-        //Função que mostra o elemento do vetor.
-        printf("%f ", vetor[i]);
+    //Exibe os valores do array.
+    for (int i = 0; i < n; i++) {
+        printf("O %d elemento eh: %d\n", i+1, array[i]);
     }
-    //Liberação do bloco de mémória que foi alocado por meio da função malloc.
-    free(vetor);
-    return 0;
-} 
+
+    free(array);
+}
